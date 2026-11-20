@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple campus lost and found notice board.">
+    <meta name="author" content="ITUS102 Student Project">
+    <title>Campus Lost &amp; Found Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="brand" href="#home" aria-label="Campus Lost and Found home">
+                <span class="brand-icon">⌕</span>
+                <span>Campus <strong>Lost &amp; Found</strong></span>
+            </a>
+            <nav aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#report">Report an Item</a>
+                <a href="#browse">Browse Items</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <div>
+                    <p class="eyebrow">YOUR CAMPUS NOTICE BOARD</p>
+                    <h1>Lost something?<br><span>Found something?</span></h1>
+                    <p class="hero-text">Help reunite lost belongings with their owners. Report an item or browse reports from around campus.</p>
+                    <div class="hero-actions">
+                        <a class="button button-light" href="#report">Report an Item</a>
+                        <a class="button button-outline" href="#browse">Browse Reports</a>
+                    </div>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <div class="art-circle">🔎</div>
+                    <div class="art-note note-one">📚 Notebook</div>
+                    <div class="art-note note-two">🎧 Earphones</div>
+                    <div class="art-note note-three">🔑 Keys</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container stats" aria-label="Report summary">
+            <article class="stat-card">
+                <span class="stat-icon">📋</span>
+                <div><p class="stat-label">Total Reports</p><p class="stat-number" id="totalCount">0</p></div>
+            </article>
+            <article class="stat-card">
+                <span class="stat-icon">🔍</span>
+                <div><p class="stat-label">Lost Items</p><p class="stat-number" id="lostCount">0</p></div>
+            </article>
+            <article class="stat-card">
+                <span class="stat-icon">📦</span>
+                <div><p class="stat-label">Found Items</p><p class="stat-number" id="foundCount">0</p></div>
+            </article>
+            <article class="stat-card">
+                <span class="stat-icon">✓</span>
+                <div><p class="stat-label">Recovered</p><p class="stat-number" id="recoveredCount">0</p></div>
+            </article>
+        </section>
+
+        <section class="container section report-section" id="report">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ADD A REPORT</p>
+                    <h2>Report a lost or found item</h2>
+                    <p>Enter the details below so other students can identify the item.</p>
+                </div>
+            </div>
+
+            <form id="reportForm" class="report-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="itemName">Item name <span>*</span></label>
+                        <input type="text" id="itemName" name="itemName" placeholder="e.g. Black water bottle" maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportType">Report type <span>*</span></label>
+                        <select id="reportType" name="reportType" required>
+                            <option value="">Select report type</option>
+                            <option value="Lost">I lost this item</option>
+                            <option value="Found">I found this item</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category <span>*</span></label>
+                        <select id="category" name="category" required>
+                            <option value="">Select category</option>
+                            <option>Electronics</option>
+                            <option>Stationery</option>
+                            <option>ID Card</option>
+                            <option>Accessories</option>
+                            <option>Personal Belongings</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Campus location <span>*</span></label>
+                        <input type="text" id="location" name="location" placeholder="e.g. Library, Block A" maxlength="60" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemDate">Date lost / found <span>*</span></label>
+                        <input type="date" id="itemDate" name="itemDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact detail (optional)</label>
+                        <input type="text" id="contact" name="contact" placeholder="Email or phone number" maxlength="80">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="description">Description <span>*</span></label>
+                        <textarea id="description" name="description" rows="3" maxlength="250" placeholder="Add colour, brand or other identifying details..." required></textarea>
+                    </div>
+                </div>
+                <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+                <button class="button button-primary" type="submit">Submit Report</button>
+                <p class="form-note">* Required fields. This demo does not send reports to a college server.</p>
+            </form>
+        </section>
+
+        <section class="browse-section" id="browse">
+            <div class="container section">
+                <div class="section-heading browse-heading">
+                    <div>
+                        <p class="eyebrow">CAMPUS NOTICE BOARD</p>
+                        <h2>Browse reported items</h2>
+                        <p>Search reports or narrow them down using the filters.</p>
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <div class="form-group search-group">
+                        <label for="searchInput">Search items</label>
+                        <input type="search" id="searchInput" placeholder="Search by item or location...">
+                    </div>
+                    <div class="form-group">
+                        <label for="typeFilter">Report type</label>
+                        <select id="typeFilter">
+                            <option value="All">All types</option>
+                            <option value="Lost">Lost</option>
+                            <option value="Found">Found</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryFilter">Category</label>
+                        <select id="categoryFilter">
+                            <option value="All">All categories</option>
+                            <option>Electronics</option>
+                            <option>Stationery</option>
+                            <option>ID Card</option>
+                            <option>Accessories</option>
+                            <option>Personal Belongings</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <button class="button button-secondary filter-reset" id="resetFilters" type="button">Reset Filters</button>
+                </div>
+
+                <div class="items-grid" id="itemsContainer" aria-live="polite"></div>
+                <p class="empty-state" id="emptyMessage" hidden>No reports match your search. Try changing the filters.</p>
+            </div>
+        </section>
+
+        <section class="container section about-section" id="about">
+            <div class="about-card">
+                <div>
+                    <p class="eyebrow">ABOUT THIS PROJECT</p>
+                    <h2>A small step towards a helpful campus</h2>
+                    <p>Campus Lost &amp; Found Hub is a front-end student project that provides a simple place to list lost and found belongings. It demonstrates HTML forms, CSS layouts and JavaScript interactivity.</p>
+                </div>
+                <div class="about-tip">
+                    <strong>Remember</strong>
+                    <p>Do not post sensitive personal information or full details from an ID card. Verify ownership before handing over an item.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>Campus Lost &amp; Found Hub</p>
+            <p>ITUS102 – Web Technology Framework Project</p>
+        </div>
+    </footer>
+</body>
+</html>
